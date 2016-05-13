@@ -7,7 +7,35 @@
 	  <link rel="stylesheet" href="css/pages/home.css"/>
 	  <script type="text/javascript" src="js/main.js"/></script>
 	  <title>VEICULOS VIX</title>  
-	</head>
+	  
+	  <script>
+		function criarTabela(){
+			// vamos criar o elemento HTML table
+			var tabela = document.createElement("table");
+			tabela.border = "1px";
+			tabela.cellSpacing = "0px";
+			tabela.cellPadding = "3px";
+
+			// vamos criar o corpo da tabela, ou seja, o tbody 
+			var corpo = document.createElement("tbody");
+			tabela.appendChild(corpo);
+			
+			// vamos criar três linhas contendo quatro células cada uma
+			for(var i = 0; i < 3; i++){
+			  var linha = corpo.insertRow(-1);
+			  
+			  for(var j = 0; j < 4; j++){
+				 var celula = linha.insertCell(-1);
+				 celula.innerHTML = "Célula " + i + ", " + j + "";
+			  }
+			}
+
+			// vamos anexar a tabela recém-criada a um elemento div
+			var container = document.getElementById("container");
+			container.appendChild(tabela);		 
+		}  
+	  </script>
+    </head>
 	<body>
 		<div class="main_wrapper">		
 			<header>
@@ -31,7 +59,7 @@
 				</h1>
 				<div id="form-combo">
 					<span class="custom-dropdown custom-dropdown--white">
-						<select class="custom-dropdown__select custom-dropdown__select--white">
+						<select id="veiculo_id" class="custom-dropdown__select custom-dropdown__select--white" >
 							<option value="" selected disabled>Selecione o Veículo</option>
 							<option>Astra</option>
 							<option>Corolla</option>  
@@ -40,9 +68,10 @@
 							<option>Zafira</option>
 						</select>
 					</span>
-					<input class="botao" type="submit" value="Buscar">
-				</div>
+					<input class="botao" type="submit" value="Buscar" onclick="criarTabela()">
+				</div>				
 			</div>
+			<div id="container"></div>
 			<footer></footer>
 		</div>
 	</body>
